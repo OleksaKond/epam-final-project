@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Author view{% endblock %}
+
+{% block content %}
+{% if author %}
+    <p>{{ author.fname }}</p>
+    <p>{{ author.lname }}</p>
+    <p>{{ author.bdate.strftime('%Y-%m-%d') }}</p>
+    {% for book in books %}
+        <p>{{ book.name }}</p>
+    {% endfor %}
+{% else %}
+    <h1>Sorry, there is no book in our list...</h1>
+{% endif %}
+{% endblock %}

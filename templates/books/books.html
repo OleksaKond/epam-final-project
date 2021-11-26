@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<center><h1>List of all Books</h1></center>
+{% if books %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 5%" scope="col">#</th>
+                <th style="width: 30%" scope="col">Name of book</th>
+                <th style="width: 30%" scope="col">Author</th>
+                <th style="width: 20%" scope="col">Genre</th>
+                <th style="width: 15%" scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for el in books %}
+        <tr>
+            <th scope="row">{{el.id}}</th>
+            <td>{{el.name}}</td>
+            <td>{{el.author}}</td>
+            <td>{{el.genre}}</td>
+            <td>
+                <form method="post">
+                    <a type="button" class="btn btn-warning btn-sm" href="{{ url_for ('books.view_book', book_id = el.id) }}">Update</a>
+                    <input name="action" value="delete" type="hidden">
+                    <button name="id" value="{{el.id}}" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <h1>Sorry, there is no book in our list...</h1>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Client view{% endblock %}
+
+{% block content %}
+<p>{{ client.fname }}</p>
+<p>{{ client.lname }}</p>
+<p>{{ client.bdate }}</p>
+<p>{{ client.reg_date }}</p>
+<p>{{ client.order }}</p>
+{% for i in client.order %}
+    <p>{{ i.id }}</p>
+{% endfor %}
+<h1>Sorry, there is no clients in our list...</h1>
+{% endblock %}

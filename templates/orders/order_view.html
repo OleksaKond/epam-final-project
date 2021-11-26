@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Client view{% endblock %}
+
+{% block content %}
+<p>{{ order.client }}</p>
+<p>{{ order.book}}</p>
+<p>{{ order.cr_date }}</p>
+<p>{{ order.till_date }}</p>
+<h1>Sorry, there is no orders in our list...</h1>
+{% endblock %}

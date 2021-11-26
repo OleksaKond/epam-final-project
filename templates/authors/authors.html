@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<center><h1>List of all authors</h1></center>
+{% if authors %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 5%" scope="col">#</th>
+                <th style="width: 20%" scope="col">First Name</th>
+                <th style="width: 20%" scope="col">Last Name</th>
+                <th style="width: 23%" scope="col">Books</th>
+                <th style="width: 22%" scope="col">Birth Date</th>
+                <th style="width: 10%" scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for el in authors %}
+        <tr>
+            <th scope="row">{{el.id}}</th>
+            <td>{{el.fname}}</td>
+            <td>{{el.lname}}</td>
+            <td>{{el.books|length}}</td>
+            <td>{{el.bdate.strftime('%Y-%m-%d')}}</td>
+            <td>
+                <form method="post">
+                    <a type="button" class="btn btn-warning btn-sm" href="{{ url_for ('authors.view_author', author_id = el.id) }}">Update</a>
+                    <input name="action" value="delete" type="hidden">
+                    <button name="id" value="{{el.id}}" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <h1>Sorry, there is no authors in our list...</h1>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

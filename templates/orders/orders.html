@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<center><h1>List of all Orders</h1></center>
+{% if orders %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 5%" scope="col">#</th>
+                <th style="width: 25%" scope="col">Client</th>
+                <th style="width: 30%" scope="col">Book</th>
+                <th style="width: 15%" scope="col">Creation Date</th>
+                <th style="width: 15%" scope="col">Deadline</th>
+                <th style="width: 10%" scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for el in orders %}
+        <tr>
+            <th scope="row">{{el.id}}</th>
+            <td>{{el.client}}</td>
+            <td>{{el.book}}</td>
+            <td>{{el.cr_date.strftime('%Y-%m-%d')}}</td>
+            <td>{{el.till_date.strftime('%Y-%m-%d')}}</td>
+            <td>
+                <form method="post">
+                    <a type="button" class="btn btn-warning btn-sm" href="{{ url_for ('orders.view_order', order_id = el.id) }}">Update</a>
+                    <input name="action" value="delete" type="hidden">
+                    <button name="id" value="{{el.id}}" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <h1>Sorry, there is no clients in our list...</h1>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
