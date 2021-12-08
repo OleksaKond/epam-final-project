@@ -6,7 +6,7 @@ from wtforms.fields import DateField, StringField, SelectMultipleField, SubmitFi
 authors = Blueprint('authors', __name__, template_folder='templates')
 
 
-class AuthFrom(FlaskForm):
+class AuthorFrom(FlaskForm):
     fname = StringField("First Name: ")
     lname = StringField("Last Name: ")
     birth_date = DateField("Birth Date: ", format="%Y-%m-%d")
@@ -26,7 +26,7 @@ def all_authors():
 @authors.route('/view/<author_id>/', methods=['POST', "GET"])
 def view_author(author_id):
     if request.method == 'GET':
-        return render_template('authors/author_view.html', form=AuthFrom(), author=Authors.query.filter_by(id=author_id).first())
+        return render_template('authors/author_view.html', form=AuthorFrom(), author=Authors.query.filter_by(id=author_id).first())
     elif request.method == 'POST':
         author = Authors.query.filter_by(id=author_id).first()
         author.fname = request.form['fname']

@@ -1,7 +1,16 @@
 from flask import Blueprint, render_template, request, redirect
 from models import Clients, db
+from flask_wtf import FlaskForm
+from wtforms.fields import DateField, StringField, SelectMultipleField, SubmitField
 
 clients = Blueprint('clients', __name__, template_folder='templates')
+
+
+class ClientFrom(FlaskForm):
+    fname = StringField("First Name: ")
+    lname = StringField("Last Name: ")
+    birth_date = DateField("Birth Date: ", format="%Y-%m-%d")
+    submit = SubmitField("Submit")
 
 
 @clients.route('/')
