@@ -16,11 +16,7 @@
             <label for="exampleFormControlSelect1">Authors</label>
             <select name="author" class="form-control" id="exampleFormControlSelect1">
                 {% for au in authors %}
-                    {% if book.author == au %}
-                        <option selected="selected">{{ au.id }} - {{ au.fname }} {{ au.lname }}</option>
-                    {% else %}
-                        <option>{{ au.id }} - {{ au.fname }} {{ au.lname }}</option>
-                    {% endif %}
+                        <option value="{{ au.id }}" {% if book.author == au %} selected="selected" {% endif %}>{{ au.id }} - {{ au.fname }} {{ au.lname }}</option>
                 {% endfor %}
             </select>
         </div>

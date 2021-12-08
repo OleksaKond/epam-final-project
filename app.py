@@ -11,6 +11,8 @@ app.register_blueprint(authors, url_prefix="/authors")
 app.register_blueprint(clients, url_prefix="/clients")
 app.register_blueprint(orders, url_prefix="/orders")
 
+app.config['SECRET_KEY']='LOL'
+
 GENRES = ["Romance",
           "Crime",
           "Thriller",
